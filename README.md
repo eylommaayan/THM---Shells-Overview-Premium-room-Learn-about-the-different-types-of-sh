@@ -42,6 +42,30 @@
 
 ניתן להשתמש ב-AttackBox של המערכת או להתחבר דרך ה-VPN האישי שלכם כדי לדמות את עמדת התוקף
 
+סקירה כללית: מהו Shell?
+Shell (מעטפת) היא תוכנה המאפשרת למשתמש לתקשר עם מערכת ההפעלה (OS). בעוד שקיימים ממשקים גרפיים (GUI), בעולם הסייבר הכוונה היא בדרך כלל לממשק שורת פקודה (CLI).
+
+<img width="966" height="361" alt="image" src="https://github.com/user-attachments/assets/f8db4406-a095-4a59-99b1-85d9c706a00b" />
+
+
+בתחום ה-Offensive Security, המושג מתייחס לסשן (Session) שבו תוקף משיג גישה למערכת שנפרצה, מה שמאפשר לו להריץ פקודות ותוכנות מרחוק על שרת היעד.
+
+🚩 פעילויות תוקף לאחר השגת Shell
+ברגע שתוקף משיג גישת Shell, הוא יכול לבצע מגוון פעולות קריטיות:
+
+שליטה מרחוק (Remote Control): הרצת פקודות ישירות על שרת היעד כאילו הוא יושב מולו.
+
+העלאת הרשאות (Privilege Escalation): אם הגישה הראשונית מוגבלת (משתמש רגיל), התוקף יחפש פרצות כדי להפוך למנהל מערכת (Root/Admin).
+
+הוצאת נתונים (Data Exfiltration): חיפוש, קריאה והעתקה של מידע רגיש (כמו מסדי נתונים או קבצי סיסמאות) אל מחוץ לארגון.
+
+עקיבות ושימור גישה (Persistence): יצירת משתמשים חדשים או התקנת Backdoors כדי להבטיח גישה למערכת גם לאחר ריסוט או ניסיון ניקוי.
+
+פעולות פוסט-אקספלויטציה (Post-Exploitation): פריסת נוזקות, מחיקת לוגים לטשטוש עקבות, או השבתת שירותי אבטחה.
+
+דילוג ברשת (Pivoting): שימוש במערכת שנפרצה כ"קרש קפיצה" (Pivot) כדי לתקוף מערכות אחרות בתוך הרשת הפנימית שאליהן אין גישה ישירה מהאינטרנט.
+
+
 השאלה,התשובה
 מהו ממשק שורת הפקודה המאפשר למשתמשים לתקשר עם מערכת ההפעלה?,Shell
 איזה תהליך כולל שימוש במערכת פרוצה כנקודת זינוק לתקיפת מכונות אחרות ברשת?,Pivoting
