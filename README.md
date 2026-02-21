@@ -324,6 +324,28 @@ c99 shell: Web Shell מוכר וחזק מאוד עם יכולות נרחבות.
 
 * <img width="863" height="564" alt="image" src="https://github.com/user-attachments/assets/06c860ae-e4f2-46e4-a5f5-259ee91280ae" />
 
+<img width="904" height="781" alt="image" src="https://github.com/user-attachments/assets/0d44df9e-9dc7-4530-9341-4f27d19f58d1" />
+
+
+
+<img width="551" height="478" alt="image" src="https://github.com/user-attachments/assets/06c31bc1-bda4-4e2b-9a99-3d3abd1b50a1" />
+
+<img width="1770" height="550" alt="image" src="https://github.com/user-attachments/assets/71c3d9a1-4758-4fd7-81f7-7a349100b367" />
+
+
+
+<img width="1817" height="726" alt="image" src="https://github.com/user-attachments/assets/960aee2a-9309-4d8f-8073-bd427e7a9501" />
+
+<img width="1790" height="641" alt="image" src="https://github.com/user-attachments/assets/90834e38-ae65-4122-a98d-20d4fedaff73" />
+
+
+<img width="988" height="696" alt="image" src="https://github.com/user-attachments/assets/af2ae22f-b7f3-4983-a082-400a22e17b72" />
+
+
+
+<img width="789" height="513" alt="image" src="https://github.com/user-attachments/assets/8c5d335c-87e3-45b2-b9fd-d5c43683938f" />
+
+
 
 
 
